@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import re
 import nltk
+from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.probability import FreqDist
@@ -16,13 +17,6 @@ import networkx as nx
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
-
-import nltk
-import sys
-
-print("NLTK version:", nltk.__version__)
-print("Python version:", sys.version)
-
 
 # Cargar datos
 df = pd.read_csv('data/script.csv', names=["index", "episode", "scene", "character", "dialogue"], header=None)
@@ -35,12 +29,26 @@ df2 = df['character'].value_counts().reset_index()
 df2.columns = ['character', 'count']
 df2 = df2.head(20)
 
-# Graficar
+# Configuración de estilo de Seaborn
+sns.set(style="whitegrid")
+
 # Crear gráfico con matplotlib
-plt.figure(figsize=(10, 6))
-plt.barh(df2['character'], df2['count'], color='crimson', edgecolor='black')
-plt.xlabel('Número de diálogos')
-plt.title('Número de diálogos según el personaje')
+plt.figure(figsize=(12, 8))
+
+# Utiliza una paleta de colores de seaborn, aquí se usa 'viridis' directamente
+colors = sns.color_palette("viridis", n_colors=len(df2))
+
+bars = plt.barh(df2['character'], df2['count'], color=colors, edgecolor='black')
+
+# Añadir etiquetas de los valores en el gráfico
+for bar in bars:
+    plt.text(bar.get_width() + 0.2, bar.get_y() + bar.get_height()/2, f'{bar.get_width()}',
+             va='center', ha='left', fontsize=10, color='black')
+
+# Etiquetas y título
+plt.xlabel('Número de diálogos', fontsize=12)
+plt.ylabel('Personaje', fontsize=12)
+plt.title('Número de diálogos según el personaje', fontsize=14)
 plt.grid(axis='x', linestyle='--', alpha=0.7)
 plt.tight_layout()
 
@@ -50,19 +58,25 @@ plt.show()
 # Inicializar el lematizador
 lemma = WordNetLemmatizer()
 
+# Descargar los datos de tokenización
+nltk.data.path.append(r'C:\Users\fsole\AppData\Roaming\nltk_data')
+
+# Obtener la lista de stopwords en español
+stop_words = set(stopwords.words("spanish"))
+
 description_list = []
-for description in df.dialogue:
+for description in df['dialogue']:
     # Eliminar caracteres no alfabéticos
-    description = re.sub("[^A-Za-z_ÑñÁáÉéÍíÓóÚú]+", " ", description)
+    description = re.sub(r"[^A-Za-z_ÑñÁáÉéÍíÓóÚú]+", " ", description)
 
     # Convertir a minúsculas
     description = description.lower()
 
     # Tokenización
-    description = nltk.word_tokenize(description)
+    description = word_tokenize(description)  # La tokenización se hace sin especificar el idioma
 
     # Eliminar stopwords
-    description = [word for word in description if word not in set(stopwords.words("spanish"))]
+    description = [word for word in description if word not in stop_words]
 
     # Lematización
     description = [lemma.lemmatize(word) for word in description]
@@ -73,7 +87,11 @@ for description in df.dialogue:
     # Añadir a la lista
     description_list.append(description)
 
+# Añadir la lista procesada al DataFrame
 df["new_script"] = description_list
+
+# Mostrar las primeras filas del DataFrame para verificar
+print(df.head())
 
 fdist = FreqDist(description_list)
 print(fdist.most_common(50))
