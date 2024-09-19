@@ -17,6 +17,13 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
+import nltk
+import sys
+
+print("NLTK version:", nltk.__version__)
+print("Python version:", sys.version)
+
+
 # Cargar datos
 df = pd.read_csv('data/script.csv', names=["index", "episode", "scene", "character", "dialogue"], header=None)
 
