@@ -1,0 +1,6 @@
+# Ignora carpetas de entorno de desarrollo
+.idea/
+
+# Ignora archivos compilados por Python
+__pycache__/
+*.py[cod]
