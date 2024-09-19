@@ -1,15 +1,72 @@
-<h1>Análisis de las Relaciones de los Personajes en 'Marmalade Boy'</h1>
+# Análisis de Relaciones de Personajes en "Marmalade Boy"
 
-<p>Este proyecto de análisis de datos utiliza Python para explorar las relaciones entre los personajes en la serie de anime 'Marmalade Boy'. El análisis se basa en un conjunto de datos que contiene información sobre los diálogos y escenas de la serie.</p>
+Este repositorio contiene un análisis detallado de las relaciones entre los personajes de "Marmalade Boy" utilizando técnicas de procesamiento de texto y visualización de datos en Python. El análisis incluye la frecuencia de diálogos, la co-ocurrencia de personajes en escenas y una visualización de las relaciones entre personajes.
 
-<h2>Resumen del Proyecto</h2>
+## Contenido
 
-<p>El análisis se divide en varias secciones clave:</p>
+- `main.py`: Script principal que realiza el análisis.
+- `script.csv`: Archivo CSV con el guion de "Marmalade Boy" (diálogos de los personajes).
+- `README.md`: Este archivo de documentación.
 
-<ul>
-    <li><strong>Análisis de Personajes:</strong> Se utiliza pandas y plotly para analizar los personajes más destacados en la serie, identificando quiénes tienen más diálogos.</li>
-    <li><strong>Procesamiento de Texto:</strong> Se realiza un procesamiento de texto para limpiar los diálogos, tokenizar las palabras y eliminar palabras comunes en español.</li>
-    <li><strong>Frecuencia de Palabras:</strong> Se utiliza NLTK y sklearn para analizar la frecuencia de palabras en los diálogos y mostrar las palabras más comunes.</li>
-    <li><strong>Análisis de Escenas:</strong> Se analiza cuántas escenas y líneas de diálogo tiene cada personaje en la serie.</li>
-    <li><strong>Análisis de Relaciones:</strong> Se crea un gráfico de red utilizando NetworkX para visualizar las relaciones entre los personajes. Las conexiones se basan en la frecuencia de aparición en escenas juntos.</li>
-</ul>
+## Requisitos
+
+El script se ha desarrollado con las siguientes librerías y versiones:
+
+- `numpy`
+- `pandas`
+- `matplotlib`
+- `plotly`
+- `seaborn`
+- `PIL` (Pillow)
+- `nltk`
+- `scikit-learn`
+- `networkx`
+
+Puedes instalar todas las dependencias necesarias usando `pip`:
+
+```bash
+pip install numpy pandas matplotlib plotly seaborn pillow nltk scikit-learn networkx
+```
+
+# Uso
+## Preparar el Entorno:
+
+Clona este repositorio en tu máquina local.
+Asegúrate de tener las librerías necesarias instaladas.
+## Datos:
+
+Asegúrate de mover el archivo CSV a la nueva carpeta `data/` y actualizar el script `script.py` para que lea el archivo desde esta nueva ubicación.
+## Ejecutar el Análisis:
+
+Ejecuta el script script.py usando Python:
+bash
+Copiar código
+python script.py
+El script generará visualizaciones de los datos y análisis de texto basados en el guion.
+
+# Descripción del Script
+El script realiza las siguientes tareas:
+
+### Carga de Datos:
+
+Lee el archivo CSV con los diálogos de los personajes y prepara el DataFrame.
+### Análisis de Frecuencia de Personajes:
+
+Calcula y visualiza la frecuencia de aparición de cada personaje.
+### Preprocesamiento de Texto:
+
+Limpia, tokeniza y lematiza los diálogos.
+Calcula la frecuencia de términos y genera una lista de las palabras más comunes.
+### Análisis de Escenas y Líneas de Diálogo:
+
+Calcula el número de escenas y líneas de diálogo por personaje.
+Visualiza estos datos con gráficos de barras.
+### Análisis de Relaciones entre Personajes:
+
+Analiza las interacciones entre pares y tríos de personajes en diferentes escenas.
+Visualiza las relaciones usando un gráfico de red (networkx).
+## Contribuciones
+Las contribuciones son bienvenidas. Por favor, abre un problema o una solicitud de extracción (pull request) para discutir cualquier mejora o corrección.
+
+## Licencia
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
