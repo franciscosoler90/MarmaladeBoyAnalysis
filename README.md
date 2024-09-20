@@ -29,10 +29,10 @@ Asegúrate de tener instalados los siguientes programas en tu sistema:
 
 ### Pasos
 1. **Clona el repositorio**
-   ```bash
-   git clone https://github.com/fransolerc/MarmaladeBoyAnalysis.git
-   cd MarmaladeBoyAnalysis
-   ```
+```bash
+git clone https://github.com/fransolerc/MarmaladeBoyAnalysis.git
+cd MarmaladeBoyAnalysis
+```
 
 2. **Crea un entorno virtual (opcional, pero recomendado)**
 ```bash
