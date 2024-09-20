@@ -30,7 +30,7 @@ Asegúrate de tener instalados los siguientes programas en tu sistema:
 ### Pasos
 1. **Clona el repositorio**
    ```bash
-   git clone https://github.com/franciscosoler90/MarmaladeBoyAnalysis.git
+   git clone https://github.com/fransolerc/MarmaladeBoyAnalysis.git
    cd MarmaladeBoyAnalysis
    ```
 
